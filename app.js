@@ -12,6 +12,8 @@ server.use(express.static(__dirname + "/"));
 server.use(bodyParser.urlencoded({
     extended: false
 }));
+
+
 // if server uses resources from other domains
 server.use(cors());
 
@@ -37,7 +39,12 @@ function convertDate(param) {
         return unixTime;
     }
 }
-// initiate server
+// if no params, instruction set displayed
+server.get("/", (req,res)=> {
+    res.sendfile("index.html");
+});
+
+// initiate server if params
 server.get("/:dateVal", (req, res) => {
     let param = req.params.dateVal;
     let responseObj = {

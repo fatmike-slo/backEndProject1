@@ -5,11 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Test</title>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Title</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur et nemo consectetur dolore repellat doloribus laudantium. Ea officiis atque architecto modi at pariatur corporis ullam nobis, libero incidunt, rerum odit.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2 col-md-3"></div>
+            <div class="col-sm-8 col-md-6">
+                <h2>API: Timestamp microservice</h2>
+                <ul>
+                    <li class="bold">Instructions:</li>
+                    <li>Pass a string as a parameter. API will check to see whether that string contains either a unix timestamp or a natural languange date</li>
+                    <li>If it does, it returns both the Unix timestamp and the natural language form of that date.</li>
+                    <li>If it does not contain a date or Unix timestamp, it returns null for those properties.</li>
+                </ul>
+                <h3>Example usage:</h3>
+                <code>https://api-timestamp-microservice.glitch.me/September%2012,%202017</code>
+                <code>https://api-timestamp-microservice.glitch.me/1505174400</code>
+                <h3>Example output:</h3>
+                <code>{ "unix": 1450137600, "natural": "December 15, 2015" }</code>
+            </div>
+            <div class="col-sm-2 col-md-3"></div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>
