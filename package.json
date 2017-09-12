@@ -4,12 +4,17 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "url": "https://github.com/fatmike-slo/backEndProject1.git"
   },
   "author": "Stupar Andrej",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.0",
     "cors": "^2.8.4",
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "nodemon": "^1.12.0"
   }
 }

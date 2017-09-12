@@ -1,0 +1,22 @@
+body {
+    background: royalblue;
+}
+
+h1 {
+    background: #f3f3f3;
+    width: 500px;
+    padding:20px;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    box-shadow: 2px 3px 2px #000;
+    text-align: center;
+}
+
+p {
+    background:palegoldenrod;
+    width: 500px;
+    padding:20px;
+    margin: 0 auto;
+    box-shadow: 2px 3px 2px #000;
+}
