@@ -1,15 +1,9 @@
-/* finish the month amount day check .. implement online and win*/
+/* finish the month amount day check .. implement online, update readme 
+to tell so that we skip the time module and did it by hand ... and win*/
 
 const express = require("express");
 const server = express();
 const cors = require("cors");
-
-// --------
-
-
-
-// --------
-
 
 const bodyParser = require("body-parser");
 // load all dipendencies of the html
@@ -52,7 +46,6 @@ server.get("/:dateVal", (req, res) => {
     }
     //if contains only numbers - unix only
     if (!/[\WA-z]/g.test(param)) {
-        console.log('only numbers, valid default');
         responseObj.unix = param;
         responseObj.natural = convertDate(param);
         res.json(responseObj);
@@ -95,27 +88,21 @@ server.get("/:dateVal", (req, res) => {
         }, {
             month: "December",
             days: 31
-        }, {
-            allMonths: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         }];
 
         let month;
+        let checkMonth = param.split(" ");
         monthList.forEach((item, index) => {
-            let checkMonth = param.split(" ");
-            
-            // TLE .. ta check checkMonth[1] <= monthList[monthList.length - 1].allMonths[index]
-            if (item.month === checkMonth[0]) {
-                console.log('checkMonth[1]',checkMonth[1]);
-                console.log('monthList[monthList.length - 1].allMonths[index]',monthList[monthList.length - 1].allMonths[index]);
-                month = item.month;
+            // verify if name of month is spelled correctly with proper number of days 
+            if (item.month === checkMonth[0] && parseInt(checkMonth[1]) > 0 && parseInt(checkMonth[1]) <= item.days) {
+                    month = item.month;
             }
         });
-        // if request is in natural date format 
+        // if month and days are correct, perform response 
         if (month !== undefined) {
             responseObj.unix = convertDate(req.params.dateVal);
             responseObj.natural = req.params.dateVal;
             res.json(responseObj);
-            console.log('lepo napisani mesec');
         }
         // if no unix & no natural date format, return null
         else {
