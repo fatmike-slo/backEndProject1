@@ -1,3 +1,5 @@
+/* finish the month amount day check .. implement online and win*/
+
 const express = require("express");
 const server = express();
 const cors = require("cors");
@@ -26,7 +28,7 @@ let timeFormat = {
     day: "numeric"
 }
 
-// convert Date to the required output format
+// convert Date to the required output format (for display only, returns value)
 function convertDate(param) {
     // if param is number
     if (!isNaN(param)) {
@@ -41,10 +43,7 @@ function convertDate(param) {
         return unixTime;
     }
 }
-let str1 = "1450137600";
-let str2 = "December%2015,%202015";
-
-
+// initiate server
 server.get("/:dateVal", (req, res) => {
     let param = req.params.dateVal;
     let responseObj = {
@@ -60,17 +59,58 @@ server.get("/:dateVal", (req, res) => {
     }
     // date has mixed number and strings, not unix
     else {
-        let monthList = ["Januar", "Februar", "March", "April", "May", "June", "July",
-            "August", "September", "October", "November", "December"
-        ];
+        let monthList = [{
+            month: "Januar",
+            days: 31
+        }, {
+            month: "Februar",
+            days: 28
+        }, {
+            month: "March",
+            days: 31
+        }, {
+            month: "April",
+            days: 30
+        }, {
+            month: "May",
+            days: 31
+        }, {
+            month: "June",
+            days: 30
+        }, {
+            month: "July",
+            days: 31
+        }, {
+            month: "August",
+            days: 31
+        }, {
+            month: "September",
+            days: 30
+        }, {
+            month: "October",
+            days: 31
+        }, {
+            month: "November",
+            days: 30
+        }, {
+            month: "December",
+            days: 31
+        }, {
+            allMonths: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        }];
+
         let month;
-        monthList.forEach((item) => {
+        monthList.forEach((item, index) => {
             let checkMonth = param.split(" ");
-            if (item === checkMonth[0]) {
-                month = item;
+            
+            // TLE .. ta check checkMonth[1] <= monthList[monthList.length - 1].allMonths[index]
+            if (item.month === checkMonth[0]) {
+                console.log('checkMonth[1]',checkMonth[1]);
+                console.log('monthList[monthList.length - 1].allMonths[index]',monthList[monthList.length - 1].allMonths[index]);
+                month = item.month;
             }
         });
-         // if request is in natural date format 
+        // if request is in natural date format 
         if (month !== undefined) {
             responseObj.unix = convertDate(req.params.dateVal);
             responseObj.natural = req.params.dateVal;
@@ -79,7 +119,10 @@ server.get("/:dateVal", (req, res) => {
         }
         // if no unix & no natural date format, return null
         else {
-            res.json({"unix":null, "natural":null})
+            res.json({
+                "unix": null,
+                "natural": null
+            })
         }
     }
 });
